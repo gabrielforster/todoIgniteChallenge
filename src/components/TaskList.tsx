@@ -41,6 +41,12 @@ export function TaskList() {
     setTasks(filteredTasks)
   }
 
+  function handleCreateWithEnter(e: {key:string}){
+    if (e.key !== 'Enter') return;
+    
+    handleCreateNewTask()
+  }
+
   return (
     <section className="task-list container">
       <header>
@@ -51,6 +57,7 @@ export function TaskList() {
             type="text" 
             placeholder="Adicionar novo todo" 
             onChange={(e) => setNewTaskTitle(e.target.value)}
+            onKeyDown={(e) => handleCreateWithEnter(e)}
             value={newTaskTitle}
           />
           <button type="submit" data-testid="add-task-button" onClick={handleCreateNewTask}>
